@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Keval Parmar - BCA Student, DevOps Enthusiast & Web Developer. Building and deploying modern web applications using Cloud & DevOps practices.">
+    <meta name="keywords" content="Keval Parmar, DevOps, Web Developer, Portfolio, BCA Student, Vadodara, Gujarat">
+    <meta name="author" content="Keval Parmar">
+    <title>Keval Parmar | DevOps & Web Developer</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- AOS Library for scroll animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">KP<span>.</span></a>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container hero-container">
+            <div class="hero-content" data-aos="fade-up">
+                <h3>Hello, I am</h3>
+                <h1 class="glitch" data-text="Keval Parmar">Keval Parmar</h1>
+                <div class="typing-container">
+                    <span class="role-static">I am a </span>
+                    <span class="role-dynamic"></span>
+                </div>
+                <p class="tagline">“Building and deploying modern web applications using Cloud & DevOps practices.”</p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn primary-btn">View Projects</a>
+                    <a href="#contact" class="btn secondary-btn">Contact Me</a>
+                </div>
+            </div>
+            <!-- Optional: Hero Image/Illustration could go here, omitting for now to focus on CSS shapes/particles -->
+        </div>
+        <a href="#about" class="scroll-down">
+            <i class="fas fa-chevron-down"></i>
+        </a>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">About <span>Me</span></h2>
+            <div class="about-content">
+                <div class="about-text" data-aos="fade-right">
+                    <p>I am a <strong>Bachelor of Computer Applications (BCA)</strong> student with hands-on experience in web development and DevOps fundamentals. I enjoy building, designing, and deploying real-world applications using modern tools and cloud platforms.</p>
+                </div>
+                <div class="about-cards">
+                    <div class="info-card glass" data-aos="zoom-in" data-aos-delay="100">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h3>Location</h3>
+                        <p>Vadodara, Gujarat, India</p>
+                    </div>
+                    <div class="info-card glass" data-aos="zoom-in" data-aos-delay="200">
+                        <i class="fas fa-language"></i>
+                        <h3>Languages</h3>
+                        <p>Hindi, Gujarati, English</p>
+                    </div>
+                    <div class="info-card glass" data-aos="zoom-in" data-aos-delay="300">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h3>Education</h3>
+                        <p>BCA - ITM (SLS) Baroda University</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Education Timeline -->
+            <div class="timeline-section" data-aos="fade-up">
+                <h3 class="subsection-title">Education Timeline</h3>
+                <div class="timeline">
+                    <div class="timeline-item left">
+                        <div class="content glass">
+                            <h3>2023 – 2025</h3>
+                            <h4>Bachelor of Computer Applications (BCA)</h4>
+                            <p>ITM (SLS), Baroda University – 3rd Year</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right">
+                        <div class="content glass">
+                            <h3>2017 – 2022</h3>
+                            <h4>Higher & Secondary Education</h4>
+                            <p>Satyanarayana Vidhyalaya</p>
+                            <div class="grades">
+                                <span>HSC (12): 52%</span>
+                                <span>SSC (10): 69%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section bg-darker">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">My <span>Skills</span></h2>
+            
+            <div class="skills-wrapper">
+                <div class="skills-category" data-aos="fade-up">
+                    <h3 class="category-title">Technical Skills</h3>
+                    <div class="skills-grid">
+                        <div class="skill-card glass">
+                            <i class="fab fa-html5"></i>
+                            <span>HTML5</span>
+                        </div>
+                        <div class="skill-card glass">
+                            <i class="fab fa-css3-alt"></i>
+                            <span>CSS3</span>
+                        </div>
+                        <div class="skill-card glass">
+                            <i class="fab fa-js"></i>
+                            <span>JavaScript</span>
+                        </div>
+                        <div class="skill-card glass">
+                            <i class="fab fa-python"></i>
+                            <span>Python (Basic)</span>
+                        </div>
+                        <div class="skill-card glass">
+                            <i class="fab fa-dyalog"></i> <!-- Django approximation or generic code icon -->
+                            <span>Django</span>
+                        </div>
+                        <div class="skill-card glass">
+                            <i class="fab fa-aws"></i>
+                            <span>AWS EC2</span>
+                        </div>
+                        <div class="skill-card glass">
+                            <i class="fab fa-linux"></i>
+                            <span>Linux</span>
+                        </div>
+                        <div class="skill-card glass">
+                            <i class="fas fa-server"></i>
+                            <span>Nginx & PM2</span>
+                        </div>
+                        <div class="skill-card glass">
+                            <i class="fas fa-code"></i>
+                            <span>VS Code & Cursor AI</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skills-category" data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="category-title">Soft Skills</h3>
+                    <div class="skills-grid">
+                        <div class="skill-card glass soft-skill">
+                            <i class="fas fa-comments"></i>
+                            <span>Good Communication</span>
+                        </div>
+                        <div class="skill-card glass soft-skill">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>Creativity</span>
+                        </div>
+                        <div class="skill-card glass soft-skill">
+                            <i class="fas fa-clock"></i>
+                            <span>Time Management</span>
+                        </div>
+                        <div class="skill-card glass soft-skill">
+                            <i class="fas fa-rocket"></i>
+                            <span>Fast Learner</span>
+                        </div>
+                        <div class="skill-card glass soft-skill">
+                            <i class="fas fa-users"></i>
+                            <span>Team Collaboration</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Work <span>Experience</span></h2>
+            <div class="experience-card glass" data-aos="flip-up">
+                <div class="exp-header">
+                    <div class="exp-role">
+                        <h3>Web Development Intern</h3>
+                        <span class="company">AARNA TECHNO LABS</span>
+                    </div>
+                    <div class="exp-date">
+                        <span>May – June 2025</span>
+                    </div>
+                </div>
+                <ul class="exp-details">
+                    <li><i class="fas fa-check-circle"></i> Worked on Smart Living E-Society project</li>
+                    <li><i class="fas fa-check-circle"></i> Frontend development & UI designing</li>
+                    <li><i class="fas fa-check-circle"></i> Used VS Code & Cursor AI</li>
+                    <li><i class="fas fa-check-circle"></i> Team collaboration & project workflow</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section bg-darker">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Featured <span>Projects</span></h2>
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card glass" data-aos="fade-up" data-aos-delay="100">
+                    <div class="project-content">
+                        <h3>Smart Living E-Society</h3>
+                        <p>Web platform for digital society management. Streamlines communication and administrative tasks.</p>
+                        <div class="tags">
+                            <span>Web Dev</span>
+                            <span>Frontend</span>
+                        </div>
+                        <a href="#" class="btn-sm">View Details</a>
+                    </div>
+                </div>
+                <!-- Project 2 -->
+                <div class="project-card glass" data-aos="fade-up" data-aos-delay="200">
+                    <div class="project-content">
+                        <h3>AI Insights</h3>
+                        <p>Detail Oriented Project focused on AI analytics and data visualization concepts.</p>
+                        <div class="tags">
+                            <span>AI</span>
+                            <span>Analytics</span>
+                        </div>
+                        <a href="#" class="btn-sm">View Details</a>
+                    </div>
+                </div>
+                <!-- Project 3 -->
+                <div class="project-card glass" data-aos="fade-up" data-aos-delay="300">
+                    <div class="project-content">
+                        <h3>Annpurna Charity Website</h3>
+                        <p>A charity website designed to help connect donors with those in need of food.</p>
+                        <div class="tags">
+                            <span>Charity</span>
+                            <span>Social Good</span>
+                        </div>
+                        <a href="#" class="btn-sm">View Details</a>
+                    </div>
+                </div>
+                <!-- Project 4 -->
+                <div class="project-card glass" data-aos="fade-up" data-aos-delay="400">
+                    <div class="project-content">
+                        <h3>E-Commerce Clothing Website</h3>
+                        <p>Full-stack implementation including frontend shopping experience and backend management.</p>
+                        <div class="tags">
+                            <span>E-Commerce</span>
+                            <span>Full Stack</span>
+                        </div>
+                        <a href="#" class="btn-sm">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container contact-container">
+            <h2 class="section-title" data-aos="fade-up">Get In <span>Touch</span></h2>
+            <div class="contact-content glass" data-aos="zoom-in">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <h4>Email</h4>
+                        <p><a href="mailto:parmarkeval204@gmail.com">parmarkeval204@gmail.com</a></p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <h4>Phone</h4>
+                        <p><a href="tel:+919558105502">+91 95581 05502</a></p>
+                    </div>
+                    <div class="contact-action">
+                        <a href="mailto:parmarkeval204@gmail.com" class="btn primary-btn pulse-btn">Let’s Connect</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; 2026 Keval Parmar. All Rights Reserved.</p>
+            <p class="footer-note">Built with passion & deployed on the cloud.</p>
+            <div class="social-links">
+                <!-- Add social links if user provides them later, keeping placeholders -->
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <!-- Particles.js -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <!-- Typed.js for role switcher -->
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+    <!-- AOS Animation -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Custom Script -->
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "name": "keval-portfolio",
+  "version": "1.0.0",
+  "description": "A modern, animated, dark-theme personal portfolio website built with HTML, CSS, JavaScript, and Node.js.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
