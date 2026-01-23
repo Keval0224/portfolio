@@ -1,11 +1,8 @@
 {
-  "deploymentType": "node",
   "projectName": "keval portfolio",
   "gitRepo": "https://github.com/Keval0224/portfolio.git",
-  "domain": "",
-  "serverIp": "3.107.192.203",
-  "sshUser": "ubuntu",
-  "sshPort": "22",
-  "sshKeyPath": "\"C:\\Users\\Keval parmar\\OneDrive\\Documents\\jarvis server\\jarvis.pem\"",
-  "appPort": "3000"
+  "domain": "keval-dev.online",
+  "appPort": "3001",
+  "deploymentType": "docker",
+  "mode": "domain"
 }
