@@ -2,7 +2,7 @@
   "projectName": "keval-portfolio",
   "gitRepo": "https://github.com/Keval0224/portfolio.git",
   "domain": "keval-dev.online",
-  "appPort": "",
+  "appPort": "3000",
   "appType": "node",
   "deploymentType": "docker",
   "mode": "domain"
