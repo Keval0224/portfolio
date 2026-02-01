@@ -33,18 +33,18 @@ body {
     font-family: var(--font-body);
     line-height: 1.6;
     overflow-x: hidden;
+    position: relative;
 }
 
-/* Background - Minimal Grain/Gradient */
-body::before {
-    content: '';
+/* Background Animation */
+#particles-js {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at 50% 50%, rgba(40, 40, 40, 0.2) 0%, rgba(10, 10, 10, 1) 100%);
-    z-index: -2;
+    z-index: -1;
+    background: radial-gradient(circle at 50% 50%, rgba(40, 40, 40, 0.1) 0%, rgba(10, 10, 10, 1) 100%);
 }
 
 /* Utilities */
@@ -161,6 +161,9 @@ body::before {
     justify-content: center;
     text-align: center;
     padding-top: 70px;
+    position: relative;
+    z-index: 1;
+    /* Above particles */
 }
 
 .hero-content h1 {
@@ -263,6 +266,7 @@ body::before {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    backdrop-filter: blur(5px);
 }
 
 .project-card:hover {
@@ -306,6 +310,7 @@ body::before {
     margin-bottom: 30px;
     border-radius: 0 12px 12px 0;
     position: relative;
+    backdrop-filter: blur(5px);
 }
 
 .timeline-item h3 {
@@ -342,6 +347,7 @@ body::before {
     padding: 30px;
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(5px);
 }
 
 .form-group {
@@ -380,6 +386,8 @@ footer {
     color: var(--text-secondary);
     font-size: 0.9rem;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    z-index: 10;
 }
 
 /* Responsive */
@@ -408,7 +416,6 @@ footer {
         background-color: #0a0a0a;
         width: 100%;
         height: 100vh;
-        /* calc(100vh - 70px) */
         padding-top: 40px;
         transition: 0.3s;
         text-align: center;

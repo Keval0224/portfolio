@@ -19,6 +19,9 @@
 
 <body>
 
+    <!-- Background Animation Container -->
+    <div id="particles-js"></div>
+
     <!-- Navbar -->
     <nav class="navbar">
         <div class="container nav-container">
@@ -40,7 +43,7 @@
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="container hero-content" data-aos="fade-up">
+        <div class="container hero-content">
             <h1>Keval P Parmar</h1>
             <h2 class="hero-subtitle">BCA Student | Web & DevOps Learner</h2>
             <p class="hero-tagline">“Building real-world web & deployment projects”</p>
@@ -54,8 +57,8 @@
     <!-- About Section -->
     <section id="about" class="section">
         <div class="container">
-            <h2 class="section-title text-center" data-aos="fade-up">About Me</h2>
-            <p class="about-text" data-aos="fade-up" data-aos-delay="100">
+            <h2 class="section-title text-center">About Me</h2>
+            <p class="about-text">
                 I am a passionate BCA student from <strong>ITM (SLS) Baroda University</strong> (2023–2025).
                 Recently completed an internship in the Web Department at <strong>Aarna Techno Labs</strong>.
                 My focus lies in Full Stack Web Development, CI/CD pipelines, and automated deployments.
@@ -67,8 +70,8 @@
     <!-- Skills Section -->
     <section id="skills" class="section">
         <div class="container text-center">
-            <h2 class="section-title" data-aos="fade-up">Technical Skills</h2>
-            <div class="skills-grid" data-aos="zoom-in">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-grid">
                 <span class="skill-badge">HTML5</span>
                 <span class="skill-badge">CSS3</span>
                 <span class="skill-badge">JavaScript</span>
@@ -87,10 +90,10 @@
     <!-- Projects Section -->
     <section id="projects" class="section">
         <div class="container">
-            <h2 class="section-title text-center" data-aos="fade-up">Projects</h2>
+            <h2 class="section-title text-center">Projects</h2>
             <div class="projects-grid">
                 <!-- Project 1 -->
-                <div class="project-card" data-aos="fade-up">
+                <div class="project-card">
                     <div>
                         <h3>Smart Living E-Society</h3>
                         <p>A comprehensive web platform for modern society management, streamlining communication and
@@ -104,7 +107,7 @@
                     <a href="#" class="btn btn-secondary" style="width:100%; text-align:center;">View Demo</a>
                 </div>
                 <!-- Project 2 -->
-                <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="project-card">
                     <div>
                         <h3>AI Insights</h3>
                         <p>A detail-oriented analytical dashboard offering AI-driven insights for data interpretation.
@@ -118,7 +121,7 @@
                     <a href="#" class="btn btn-secondary" style="width:100%; text-align:center;">View Demo</a>
                 </div>
                 <!-- Project 3 -->
-                <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="project-card">
                     <div>
                         <h3>Annpurna Charity Website</h3>
                         <p>A charity platform connecting donors with the needy, focusing on UI efficiency and trust.</p>
@@ -130,7 +133,7 @@
                     <a href="#" class="btn btn-secondary" style="width:100%; text-align:center;">View Demo</a>
                 </div>
                 <!-- Project 4 -->
-                <div class="project-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="project-card">
                     <div>
                         <h3>E-Commerce Clothing Website</h3>
                         <p>A full-stack e-commerce solution handling product listing, cart management, and user
@@ -150,9 +153,9 @@
     <!-- Experience & Education Section -->
     <section id="experience" class="section">
         <div class="container">
-            <h2 class="section-title text-center" data-aos="fade-up">Experience & Education</h2>
+            <h2 class="section-title text-center">Experience & Education</h2>
 
-            <div class="timeline-item" data-aos="fade-left">
+            <div class="timeline-item">
                 <h3>Web Intern</h3>
                 <p class="meta">Aarna Techno Labs | May 2025 – June 2025</p>
                 <ul>
@@ -163,7 +166,7 @@
                 </ul>
             </div>
 
-            <div class="timeline-item" data-aos="fade-left" data-aos-delay="100">
+            <div class="timeline-item">
                 <h3>Bachelor of Computer Applications (BCA)</h3>
                 <p class="meta">ITM (SLS) Baroda University | 2023 – 2025</p>
                 <p>Focusing on Core Computer Science subjects, Web Technologies, and Software Engineering.</p>
@@ -174,9 +177,9 @@
     <!-- Contact Section -->
     <section id="contact" class="section">
         <div class="container">
-            <h2 class="section-title text-center" data-aos="fade-up">Contact Me</h2>
+            <h2 class="section-title text-center">Contact Me</h2>
             <div class="contact-wrapper">
-                <div class="contact-info" data-aos="fade-right">
+                <div class="contact-info">
                     <h3>Get In Touch</h3>
                     <p style="color:var(--text-secondary); margin-bottom:20px;">
                         I am available for freelance work and internship opportunities.
@@ -191,7 +194,7 @@
                     </div>
                 </div>
 
-                <form class="contact-form" data-aos="fade-left">
+                <form class="contact-form">
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Your Name" required>
                     </div>
@@ -215,7 +218,13 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Particles.js -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
     <script src="script.js"></script>
 </body>
 
