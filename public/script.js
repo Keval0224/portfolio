@@ -1,213 +1,154 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     /* =========================================
-       Three.js Galaxy Background
+       1. 3D Black Hole / Vortex Background (Three.js)
        ========================================= */
     const canvas = document.querySelector('#bg-canvas');
     const scene = new THREE.Scene();
-
-    // Use a fog to create depth
-    scene.fog = new THREE.FogExp2(0x0a0a0a, 0.001);
+    scene.fog = new THREE.FogExp2(0x030014, 0.002);
 
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({
-        canvas: canvas,
-        alpha: true,
-        antialias: true
-    });
+    const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
 
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(window.devicePixelRatio);
 
-    // --- Starfield ---
-    const starGeometry = new THREE.BufferGeometry();
-    const starCount = 5000;
-    const starPosArray = new Float32Array(starCount * 3);
+    // --- Black Hole Particle System ---
+    const particlesGeometry = new THREE.BufferGeometry();
+    const particlesCount = 15000; // Dense
+    const posArray = new Float32Array(particlesCount * 3);
+    const colorArray = new Float32Array(particlesCount * 3);
 
-    for (let i = 0; i < starCount * 3; i++) {
-        starPosArray[i] = (Math.random() - 0.5) * 2000; // Spread stars wide
+    const colorInside = new THREE.Color('#ff00cc'); // Pink/Magenta center
+    const colorOutside = new THREE.Color('#3300ff'); // Deep Blue/Purple edge
+
+    for (let i = 0; i < particlesCount; i++) {
+        const i3 = i * 3;
+        // Vortex shape: flat spiral
+        const radius = Math.random() * 50 + 10; // Hole in middle (radius 0-10 empty)
+        const spinAngle = radius * 0.5; // More spin further out
+        const branchAngle = (i % 5) * 2 * Math.PI / 5; // 5 arms
+
+        const randomX = (Math.random() - 0.5) * 2;
+        const randomY = (Math.random() - 0.5) * 5; // Flattened
+        const randomZ = (Math.random() - 0.5) * 2;
+
+        posArray[i3] = Math.cos(branchAngle + spinAngle) * radius + randomX;
+        posArray[i3 + 1] = randomY;
+        posArray[i3 + 2] = Math.sin(branchAngle + spinAngle) * radius + randomZ;
+
+        // Color based on radius
+        const mixedColor = colorInside.clone();
+        mixedColor.lerp(colorOutside, radius / 50);
+
+        colorArray[i3] = mixedColor.r;
+        colorArray[i3 + 1] = mixedColor.g;
+        colorArray[i3 + 2] = mixedColor.b;
     }
 
-    starGeometry.setAttribute('position', new THREE.BufferAttribute(starPosArray, 3));
+    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+    particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colorArray, 3));
 
-    const starMaterial = new THREE.PointsMaterial({
-        size: 2,
-        color: 0xffffff,
+    const particlesMaterial = new THREE.PointsMaterial({
+        size: 0.15,
+        vertexColors: true,
+        blending: THREE.AdditiveBlending,
         transparent: true,
-        opacity: 0.8,
-        sizeAttenuation: true
+        opacity: 0.8
     });
 
-    const stars = new THREE.Points(starGeometry, starMaterial);
+    const blackHole = new THREE.Points(particlesGeometry, particlesMaterial);
+
+    // Position Black Hole at Top Center (as per screenshot)
+    blackHole.rotation.x = 0.5; // Tilt to see spiral
+    blackHole.position.y = 15; // Move up
+    blackHole.position.z = -10; // Move back
+    scene.add(blackHole);
+
+    // --- Starfield Background ---
+    const starGeo = new THREE.BufferGeometry();
+    const starCount = 2000;
+    const starPos = new Float32Array(starCount * 3);
+    for (let i = 0; i < starCount * 3; i++) starPos[i] = (Math.random() - 0.5) * 2000;
+    starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
+    const starMat = new THREE.PointsMaterial({ size: 1.5, color: 0xffffff, transparent: true, opacity: 0.6 });
+    const stars = new THREE.Points(starGeo, starMat);
     scene.add(stars);
 
-    // --- Galaxy Spiral (The "Next Level" Element) ---
-    // Parameters
-    const parameters = {
-        count: 10000,
-        size: 0.02,
-        radius: 100,
-        branches: 3,
-        spin: 1,
-        randomness: 0.2,
-        randomnessPower: 3,
-        insideColor: '#ec4899', // Pink (Core)
-        outsideColor: '#a855f7' // Deep Purple (Arms)
-    };
-
-    let geometry = null;
-    let material = null;
-    let points = null;
-
-    const generateGalaxy = () => {
-        if (points !== null) {
-            geometry.dispose();
-            material.dispose();
-            scene.remove(points);
-        }
-
-        geometry = new THREE.BufferGeometry();
-        const positions = new Float32Array(parameters.count * 3);
-        const colors = new Float32Array(parameters.count * 3);
-
-        const colorInside = new THREE.Color(parameters.insideColor);
-        const colorOutside = new THREE.Color(parameters.outsideColor);
-
-        for (let i = 0; i < parameters.count; i++) {
-            const i3 = i * 3;
-
-            // Radius
-            const radius = Math.random() * parameters.radius;
-
-            // Spin angle
-            const spinAngle = radius * parameters.spin;
-
-            // Branch angle
-            const branchAngle = (i % parameters.branches) / parameters.branches * Math.PI * 2;
-
-            // Randomness
-            const randomX = Math.pow(Math.random(), parameters.randomnessPower) * (Math.random() < 0.5 ? 1 : -1) * parameters.randomness * radius;
-            const randomY = Math.pow(Math.random(), parameters.randomnessPower) * (Math.random() < 0.5 ? 1 : -1) * parameters.randomness * radius;
-            const randomZ = Math.pow(Math.random(), parameters.randomnessPower) * (Math.random() < 0.5 ? 1 : -1) * parameters.randomness * radius;
-
-            positions[i3] = Math.cos(branchAngle + spinAngle) * radius + randomX;
-            positions[i3 + 1] = randomY; // Flat galaxy
-            positions[i3 + 2] = Math.sin(branchAngle + spinAngle) * radius + randomZ;
-
-            // Colors
-            const mixedColor = colorInside.clone();
-            mixedColor.lerp(colorOutside, radius / parameters.radius);
-
-            colors[i3] = mixedColor.r;
-            colors[i3 + 1] = mixedColor.g;
-            colors[i3 + 2] = mixedColor.b;
-        }
-
-        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-        geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-
-        material = new THREE.PointsMaterial({
-            size: parameters.size,
-            sizeAttenuation: true,
-            depthWrite: false,
-            blending: THREE.AdditiveBlending,
-            vertexColors: true
-        });
-
-        points = new THREE.Points(geometry, material);
-
-        // Tilt the galaxy slightly
-        points.rotation.x = 0.5;
-        scene.add(points);
-    };
-
-    // Initialize Galaxy
-    generateGalaxy();
-
-    // --- Animation Loop ---
-    camera.position.z = 100;
-    camera.position.y = 20;
+    // Animation
+    camera.position.z = 40;
 
     let mouseX = 0;
     let mouseY = 0;
-
-    // Mouse Move Effect
-    document.addEventListener('mousemove', (event) => {
-        mouseX = event.clientX;
-        mouseY = event.clientY;
+    document.addEventListener('mousemove', (e) => {
+        mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+        mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
     });
 
     const clock = new THREE.Clock();
 
     const animate = () => {
-        const elapsedTime = clock.getElapsedTime();
+        const time = clock.getElapsedTime();
 
-        // Rotate Galaxy
-        if (points) {
-            points.rotation.y = elapsedTime * 0.05;
-        }
+        // Rotate Vortex
+        blackHole.rotation.y = time * 0.1;
 
-        // Rotate Stars slowly
-        stars.rotation.y = -elapsedTime * 0.02;
+        // Pulse Effect (Heartbeat of the black hole)
+        const scale = 1 + Math.sin(time * 2) * 0.02;
+        blackHole.scale.set(scale, scale, scale);
 
-        // Slight Camera movement based on mouse
-        camera.position.x += (mouseX * 0.001 - camera.position.x) * 0.05;
-        camera.position.y += (-mouseY * 0.001 - camera.position.y) * 0.05;
+        // Stars drift
+        stars.rotation.y = -time * 0.01;
 
-        // Parallax Effect on Scroll
-        const scrollY = window.scrollY;
-        camera.position.z = 100 - scrollY * 0.05;
+        // Camera float
+        camera.position.x += (mouseX * 5 - camera.position.x) * 0.05;
+        camera.position.y += (-mouseY * 5 - camera.position.y) * 0.05;
+        camera.lookAt(0, 10, 0); // Look at black hole
 
         renderer.render(scene, camera);
         requestAnimationFrame(animate);
     };
-
     animate();
 
-    // Resize Handler
     window.addEventListener('resize', () => {
         camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
         renderer.setSize(window.innerWidth, window.innerHeight);
     });
 
-
     /* =========================================
-       Existing Functionality (Preserved)
+       2. 3D Floating Tag Cloud (CSS) 
        ========================================= */
+    const tagCloudContainer = document.getElementById('tag-cloud');
+    if (tagCloudContainer) {
+        const skills = ['React', 'Node.js', 'AWS', 'Python', 'Docker', 'MongoDB', 'Three.js', 'DevOps', 'JS', 'Git'];
+
+        // Create 3D Container
+        const cloud = document.createElement('div');
+        cloud.className = 'tag-cloud-container';
+        tagCloudContainer.appendChild(cloud);
+
+        // Distribute tags on a sphere using Fibonacci Spiral
+        const radius = 180;
+
+        skills.forEach((skill, i) => {
+            const tag = document.createElement('div');
+            tag.className = 'tag-item';
+            tag.textContent = skill;
+
+            // Spherical coordinates
+            const phi = Math.acos(-1 + (2 * i) / skills.length);
+            const theta = Math.sqrt(skills.length * Math.PI) * phi;
+
+            const x = radius * Math.cos(theta) * Math.sin(phi);
+            const y = radius * Math.sin(theta) * Math.sin(phi);
+            const z = radius * Math.cos(phi);
+
+            tag.style.transform = `translate3d(${x}px, ${y}px, ${z}px)`;
+            cloud.appendChild(tag);
+        });
+    }
 
     // Initialize AOS
-    AOS.init({
-        duration: 800,
-        easing: 'ease-out',
-        once: false,
-        mirror: true
-    });
-
-    // Initialize Typed.js
-    if (document.querySelector('.role-dynamic')) {
-        new Typed('.role-dynamic', {
-            strings: ['BCA Student', 'DevOps Enthusiast', 'Web Developer'],
-            typeSpeed: 50,
-            backSpeed: 30,
-            backDelay: 2000,
-            loop: true
-        });
-    }
-
-    // Mobile Menu Toggle
-    const mobileMenuBtn = document.getElementById('mobile-menu');
-    const navMenu = document.querySelector('.nav-menu');
-
-    if (mobileMenuBtn && navMenu) {
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenuBtn.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-
-        document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
-            mobileMenuBtn.classList.remove('active');
-            navMenu.classList.remove('active');
-        }));
-    }
+    AOS.init({ duration: 800, once: false });
 });
