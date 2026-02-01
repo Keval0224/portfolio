@@ -28,8 +28,8 @@
 </head>
 
 <body>
-    <!-- Particles Background -->
-    <div id="particles-js"></div>
+    <!-- 3D Background Canvas -->
+    <canvas id="bg-canvas"></canvas>
 
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
@@ -67,7 +67,6 @@
                     <a href="#contact" class="btn secondary-btn">Contact Me</a>
                 </div>
             </div>
-            <!-- Optional: Hero Image/Illustration could go here, omitting for now to focus on CSS shapes/particles -->
         </div>
         <a href="#about" class="scroll-down">
             <i class="fas fa-chevron-down"></i>
@@ -139,41 +138,41 @@
                 <div class="skills-category" data-aos="fade-up">
                     <h3 class="category-title">Technical Skills</h3>
                     <div class="skills-grid">
-                        <div class="skill-card glass">
+                        <div class="skill-card glass" title="HTML5">
                             <i class="fab fa-html5"></i>
                             <span>HTML5</span>
                         </div>
-                        <div class="skill-card glass">
+                        <div class="skill-card glass" title="CSS3">
                             <i class="fab fa-css3-alt"></i>
                             <span>CSS3</span>
                         </div>
-                        <div class="skill-card glass">
+                        <div class="skill-card glass" title="JavaScript">
                             <i class="fab fa-js"></i>
                             <span>JavaScript</span>
                         </div>
-                        <div class="skill-card glass">
+                        <div class="skill-card glass" title="Python">
                             <i class="fab fa-python"></i>
-                            <span>Python (Basic)</span>
+                            <span>Python</span>
                         </div>
-                        <div class="skill-card glass">
-                            <i class="fab fa-dyalog"></i> <!-- Django approximation or generic code icon -->
+                        <div class="skill-card glass" title="Django">
+                            <i class="fas fa-code"></i>
                             <span>Django</span>
                         </div>
-                        <div class="skill-card glass">
+                        <div class="skill-card glass" title="AWS">
                             <i class="fab fa-aws"></i>
                             <span>AWS EC2</span>
                         </div>
-                        <div class="skill-card glass">
+                        <div class="skill-card glass" title="Linux">
                             <i class="fab fa-linux"></i>
                             <span>Linux</span>
                         </div>
-                        <div class="skill-card glass">
+                        <div class="skill-card glass" title="Nginx">
                             <i class="fas fa-server"></i>
-                            <span>Nginx & PM2</span>
+                            <span>Nginx</span>
                         </div>
-                        <div class="skill-card glass">
-                            <i class="fas fa-code"></i>
-                            <span>VS Code & Cursor AI</span>
+                        <div class="skill-card glass" title="Tools">
+                            <i class="fas fa-tools"></i>
+                            <span>VS Code</span>
                         </div>
                     </div>
                 </div>
@@ -183,7 +182,7 @@
                     <div class="skills-grid">
                         <div class="skill-card glass soft-skill">
                             <i class="fas fa-comments"></i>
-                            <span>Good Communication</span>
+                            <span>Communication</span>
                         </div>
                         <div class="skill-card glass soft-skill">
                             <i class="fas fa-lightbulb"></i>
@@ -194,12 +193,8 @@
                             <span>Time Management</span>
                         </div>
                         <div class="skill-card glass soft-skill">
-                            <i class="fas fa-rocket"></i>
-                            <span>Fast Learner</span>
-                        </div>
-                        <div class="skill-card glass soft-skill">
                             <i class="fas fa-users"></i>
-                            <span>Team Collaboration</span>
+                            <span>Teamwork</span>
                         </div>
                     </div>
                 </div>
@@ -224,8 +219,7 @@
                 <ul class="exp-details">
                     <li><i class="fas fa-check-circle"></i> Worked on Smart Living E-Society project</li>
                     <li><i class="fas fa-check-circle"></i> Frontend development & UI designing</li>
-                    <li><i class="fas fa-check-circle"></i> Used VS Code & Cursor AI</li>
-                    <li><i class="fas fa-check-circle"></i> Team collaboration & project workflow</li>
+                    <li><i class="fas fa-check-circle"></i> Tech: JS, CSS, Version Control</li>
                 </ul>
             </div>
         </div>
@@ -267,7 +261,7 @@
                         <h3>Annpurna Charity Website</h3>
                         <p>A charity website designed to help connect donors with those in need of food.</p>
                         <div class="tags">
-                            <span>Charity</span>
+                            <span>HTML/CSS</span>
                             <span>Social Good</span>
                         </div>
                         <a href="#" class="btn-sm">View Details</a>
@@ -319,7 +313,6 @@
             <p>&copy; 2026 Keval Parmar. All Rights Reserved.</p>
             <p class="footer-note">Built with passion & deployed on the cloud.</p>
             <div class="social-links">
-                <!-- Add social links if user provides them later, keeping placeholders -->
                 <a href="#"><i class="fab fa-linkedin"></i></a>
                 <a href="#"><i class="fab fa-github"></i></a>
                 <a href="#"><i class="fab fa-twitter"></i></a>
@@ -328,8 +321,8 @@
     </footer>
 
     <!-- Scripts -->
-    <!-- Particles.js -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <!-- Typed.js for role switcher -->
     <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
     <!-- AOS Animation -->
