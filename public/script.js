@@ -1,144 +1,149 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     /* =========================================
-       1. 3D Abstract Tech Background (Three.js)
+       Original Galaxy Background (Purple/Pink Spiral)
        ========================================= */
     const canvas = document.querySelector('#bg-canvas');
-    const scene = new THREE.Scene();
-    scene.fog = new THREE.FogExp2(0x0f172a, 0.002); // Slate 900 fog
+    if (canvas) {
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
 
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
 
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(window.devicePixelRatio);
-
-    // --- Floating Abstract Geometric Shapes ---
-    const shapesGroup = new THREE.Group();
-    scene.add(shapesGroup);
-
-    const geometry = new THREE.IcosahedronGeometry(1, 1);
-    const material = new THREE.MeshBasicMaterial({
-        color: 0x38bdf8, // Sky Blue
-        wireframe: true,
-        transparent: true,
-        opacity: 0.3
-    });
-
-    const particles = [];
-    const particleCount = 50;
-
-    for (let i = 0; i < particleCount; i++) {
-        const mesh = new THREE.Mesh(geometry, material);
-
-        // Random Position
-        mesh.position.x = (Math.random() - 0.5) * 80;
-        mesh.position.y = (Math.random() - 0.5) * 50;
-        mesh.position.z = (Math.random() - 0.5) * 50;
-
-        // Random Scale
-        const scale = Math.random() * 2 + 0.5;
-        mesh.scale.set(scale, scale, scale);
-
-        // Random Rotation Speed
-        mesh.userData = {
-            rotX: (Math.random() - 0.5) * 0.02,
-            rotY: (Math.random() - 0.5) * 0.02,
-            velX: (Math.random() - 0.5) * 0.05,
-            velY: (Math.random() - 0.5) * 0.05
+        // Parameters
+        const parameters = {
+            count: 15000,
+            size: 0.02,
+            radius: 5, // Tighter spiral for background
+            branches: 3,
+            spin: 1,
+            randomness: 0.2,
+            randomnessPower: 3,
+            insideColor: '#ec4899', // Pink
+            outsideColor: '#a855f7' // Purple
         };
 
-        shapesGroup.add(mesh);
-        particles.push(mesh);
-    }
+        let geometry = null;
+        let material = null;
+        let points = null;
 
-    // Add some connecting lines logic or just float?
-    // Let's keep it clean with just floating polyhedrons for now.
+        const generateGalaxy = () => {
+            geometry = new THREE.BufferGeometry();
+            const positions = new Float32Array(parameters.count * 3);
+            const colors = new Float32Array(parameters.count * 3);
 
-    // --- Subtle Grid Floor (Retro/Tech vibe) ---
-    const gridHelper = new THREE.GridHelper(100, 50, 0x38bdf8, 0x1e293b);
-    gridHelper.position.y = -20;
-    gridHelper.material.transparent = true;
-    gridHelper.material.opacity = 0.2;
-    scene.add(gridHelper);
+            const colorInside = new THREE.Color(parameters.insideColor);
+            const colorOutside = new THREE.Color(parameters.outsideColor);
 
-    // Animation
-    camera.position.z = 30;
+            for (let i = 0; i < parameters.count; i++) {
+                const i3 = i * 3;
+                const radius = Math.random() * parameters.radius + 2; // Spread out
+                const spinAngle = radius * parameters.spin;
+                const branchAngle = (i % parameters.branches) / parameters.branches * Math.PI * 2;
 
-    let mouseX = 0;
-    let mouseY = 0;
-    document.addEventListener('mousemove', (e) => {
-        mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
-        mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
-    });
+                const randomX = Math.pow(Math.random(), parameters.randomnessPower) * (Math.random() < 0.5 ? 1 : -1) * parameters.randomness * radius;
+                const randomY = Math.pow(Math.random(), parameters.randomnessPower) * (Math.random() < 0.5 ? 1 : -1) * parameters.randomness * radius;
+                const randomZ = Math.pow(Math.random(), parameters.randomnessPower) * (Math.random() < 0.5 ? 1 : -1) * parameters.randomness * radius;
 
-    const clock = new THREE.Clock();
+                positions[i3] = Math.cos(branchAngle + spinAngle) * radius + randomX;
+                positions[i3 + 1] = randomY;
+                positions[i3 + 2] = Math.sin(branchAngle + spinAngle) * radius + randomZ;
 
-    const animate = () => {
-        const time = clock.getElapsedTime();
+                const mixedColor = colorInside.clone();
+                mixedColor.lerp(colorOutside, radius / parameters.radius);
 
-        // Rotate entire group slowly
-        shapesGroup.rotation.y = time * 0.05;
+                colors[i3] = mixedColor.r;
+                colors[i3 + 1] = mixedColor.g;
+                colors[i3 + 2] = mixedColor.b;
+            }
 
-        // Animate individual particles
-        particles.forEach(p => {
-            p.rotation.x += p.userData.rotX;
-            p.rotation.y += p.userData.rotY;
+            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 
-            // Floating motion
-            p.position.x += Math.sin(time * 0.5 + p.position.y) * 0.02;
-            p.position.y += Math.cos(time * 0.3 + p.position.x) * 0.02;
+            material = new THREE.PointsMaterial({
+                size: parameters.size,
+                sizeAttenuation: true,
+                depthWrite: false,
+                blending: THREE.AdditiveBlending,
+                vertexColors: true
+            });
+
+            points = new THREE.Points(geometry, material);
+            points.rotation.x = 0.4;
+            scene.add(points);
+        };
+        generateGalaxy();
+
+        // Starfield
+        const starGeo = new THREE.BufferGeometry();
+        const starCount = 3000;
+        const starPos = new Float32Array(starCount * 3);
+        for (let i = 0; i < starCount * 3; i++) starPos[i] = (Math.random() - 0.5) * 100;
+        starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
+        const starMat = new THREE.PointsMaterial({ size: 0.05, color: 0xffffff });
+        const stars = new THREE.Points(starGeo, starMat);
+        scene.add(stars);
+
+        camera.position.z = 8;
+        camera.position.y = 2;
+
+        let mouseX = 0;
+        let mouseY = 0;
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX / window.innerWidth - 0.5;
+            mouseY = e.clientY / window.innerHeight - 0.5;
         });
 
-        // Camera gentle float
-        camera.position.x += (mouseX * 2 - camera.position.x) * 0.05;
-        camera.position.y += (-mouseY * 2 - camera.position.y) * 0.05;
-        camera.lookAt(0, 0, 0);
+        const clock = new THREE.Clock();
 
-        renderer.render(scene, camera);
-        requestAnimationFrame(animate);
-    };
-    animate();
+        const animate = () => {
+            const time = clock.getElapsedTime();
+            points.rotation.y = time * 0.05;
+            stars.rotation.y = -time * 0.02;
 
-    window.addEventListener('resize', () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-    });
+            camera.position.x += (mouseX * 0.5 - camera.position.x) * 0.05;
+            camera.position.y += (-mouseY * 0.5 - camera.position.y) * 0.05;
 
-    /* =========================================
-       2. 3D Floating Tag Cloud (CSS) 
-       ========================================= */
-    const tagCloudContainer = document.getElementById('tag-cloud');
-    if (tagCloudContainer) {
-        const skills = ['React', 'Node.js', 'AWS', 'Python', 'Docker', 'MongoDB', 'Three.js', 'DevOps', 'JS', 'Git'];
+            renderer.render(scene, camera);
+            requestAnimationFrame(animate);
+        };
+        animate();
 
-        // Create 3D Container
-        const cloud = document.createElement('div');
-        cloud.className = 'tag-cloud-container';
-        tagCloudContainer.appendChild(cloud);
-
-        // Distribute tags on a sphere using Fibonacci Spiral
-        const radius = 180;
-
-        skills.forEach((skill, i) => {
-            const tag = document.createElement('div');
-            tag.className = 'tag-item';
-            tag.textContent = skill;
-
-            // Spherical coordinates
-            const phi = Math.acos(-1 + (2 * i) / skills.length);
-            const theta = Math.sqrt(skills.length * Math.PI) * phi;
-
-            const x = radius * Math.cos(theta) * Math.sin(phi);
-            const y = radius * Math.sin(theta) * Math.sin(phi);
-            const z = radius * Math.cos(phi);
-
-            tag.style.transform = `translate3d(${x}px, ${y}px, ${z}px)`;
-            cloud.appendChild(tag);
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
         });
     }
 
     // Initialize AOS
-    AOS.init({ duration: 800, once: false });
+    AOS.init({ duration: 800, easing: 'ease-out', once: false });
+
+    // Initialize Typed.js
+    if (document.querySelector('.role-dynamic')) {
+        new Typed('.role-dynamic', {
+            strings: ['DevOps Enthusiast', 'Web Developer', 'Software Engineer'],
+            typeSpeed: 60,
+            backSpeed: 40,
+            backDelay: 2000,
+            loop: true
+        });
+    }
+
+    // Mobile Menu
+    const mobileMenuBtn = document.getElementById('mobile-menu');
+    const navMenu = document.querySelector('.nav-menu');
+
+    if (mobileMenuBtn && navMenu) {
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenuBtn.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+        document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
+            mobileMenuBtn.classList.remove('active');
+            navMenu.classList.remove('active');
+        }));
+    }
 });
