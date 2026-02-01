@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     /* =========================================
-       1. 3D Black Hole / Vortex Background (Three.js)
+       1. 3D Abstract Tech Background (Three.js)
        ========================================= */
     const canvas = document.querySelector('#bg-canvas');
     const scene = new THREE.Scene();
-    scene.fog = new THREE.FogExp2(0x030014, 0.002);
+    scene.fog = new THREE.FogExp2(0x0f172a, 0.002); // Slate 900 fog
 
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
@@ -13,70 +13,57 @@ document.addEventListener('DOMContentLoaded', () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(window.devicePixelRatio);
 
-    // --- Black Hole Particle System ---
-    const particlesGeometry = new THREE.BufferGeometry();
-    const particlesCount = 15000; // Dense
-    const posArray = new Float32Array(particlesCount * 3);
-    const colorArray = new Float32Array(particlesCount * 3);
+    // --- Floating Abstract Geometric Shapes ---
+    const shapesGroup = new THREE.Group();
+    scene.add(shapesGroup);
 
-    const colorInside = new THREE.Color('#ff00cc'); // Pink/Magenta center
-    const colorOutside = new THREE.Color('#3300ff'); // Deep Blue/Purple edge
-
-    for (let i = 0; i < particlesCount; i++) {
-        const i3 = i * 3;
-        // Vortex shape: flat spiral
-        const radius = Math.random() * 50 + 10; // Hole in middle (radius 0-10 empty)
-        const spinAngle = radius * 0.5; // More spin further out
-        const branchAngle = (i % 5) * 2 * Math.PI / 5; // 5 arms
-
-        const randomX = (Math.random() - 0.5) * 2;
-        const randomY = (Math.random() - 0.5) * 5; // Flattened
-        const randomZ = (Math.random() - 0.5) * 2;
-
-        posArray[i3] = Math.cos(branchAngle + spinAngle) * radius + randomX;
-        posArray[i3 + 1] = randomY;
-        posArray[i3 + 2] = Math.sin(branchAngle + spinAngle) * radius + randomZ;
-
-        // Color based on radius
-        const mixedColor = colorInside.clone();
-        mixedColor.lerp(colorOutside, radius / 50);
-
-        colorArray[i3] = mixedColor.r;
-        colorArray[i3 + 1] = mixedColor.g;
-        colorArray[i3 + 2] = mixedColor.b;
-    }
-
-    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-    particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colorArray, 3));
-
-    const particlesMaterial = new THREE.PointsMaterial({
-        size: 0.15,
-        vertexColors: true,
-        blending: THREE.AdditiveBlending,
+    const geometry = new THREE.IcosahedronGeometry(1, 1);
+    const material = new THREE.MeshBasicMaterial({
+        color: 0x38bdf8, // Sky Blue
+        wireframe: true,
         transparent: true,
-        opacity: 0.8
+        opacity: 0.3
     });
 
-    const blackHole = new THREE.Points(particlesGeometry, particlesMaterial);
+    const particles = [];
+    const particleCount = 50;
 
-    // Position Black Hole at Top Center (as per screenshot)
-    blackHole.rotation.x = 0.5; // Tilt to see spiral
-    blackHole.position.y = 15; // Move up
-    blackHole.position.z = -10; // Move back
-    scene.add(blackHole);
+    for (let i = 0; i < particleCount; i++) {
+        const mesh = new THREE.Mesh(geometry, material);
 
-    // --- Starfield Background ---
-    const starGeo = new THREE.BufferGeometry();
-    const starCount = 2000;
-    const starPos = new Float32Array(starCount * 3);
-    for (let i = 0; i < starCount * 3; i++) starPos[i] = (Math.random() - 0.5) * 2000;
-    starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
-    const starMat = new THREE.PointsMaterial({ size: 1.5, color: 0xffffff, transparent: true, opacity: 0.6 });
-    const stars = new THREE.Points(starGeo, starMat);
-    scene.add(stars);
+        // Random Position
+        mesh.position.x = (Math.random() - 0.5) * 80;
+        mesh.position.y = (Math.random() - 0.5) * 50;
+        mesh.position.z = (Math.random() - 0.5) * 50;
+
+        // Random Scale
+        const scale = Math.random() * 2 + 0.5;
+        mesh.scale.set(scale, scale, scale);
+
+        // Random Rotation Speed
+        mesh.userData = {
+            rotX: (Math.random() - 0.5) * 0.02,
+            rotY: (Math.random() - 0.5) * 0.02,
+            velX: (Math.random() - 0.5) * 0.05,
+            velY: (Math.random() - 0.5) * 0.05
+        };
+
+        shapesGroup.add(mesh);
+        particles.push(mesh);
+    }
+
+    // Add some connecting lines logic or just float?
+    // Let's keep it clean with just floating polyhedrons for now.
+
+    // --- Subtle Grid Floor (Retro/Tech vibe) ---
+    const gridHelper = new THREE.GridHelper(100, 50, 0x38bdf8, 0x1e293b);
+    gridHelper.position.y = -20;
+    gridHelper.material.transparent = true;
+    gridHelper.material.opacity = 0.2;
+    scene.add(gridHelper);
 
     // Animation
-    camera.position.z = 40;
+    camera.position.z = 30;
 
     let mouseX = 0;
     let mouseY = 0;
@@ -90,20 +77,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const animate = () => {
         const time = clock.getElapsedTime();
 
-        // Rotate Vortex
-        blackHole.rotation.y = time * 0.1;
+        // Rotate entire group slowly
+        shapesGroup.rotation.y = time * 0.05;
 
-        // Pulse Effect (Heartbeat of the black hole)
-        const scale = 1 + Math.sin(time * 2) * 0.02;
-        blackHole.scale.set(scale, scale, scale);
+        // Animate individual particles
+        particles.forEach(p => {
+            p.rotation.x += p.userData.rotX;
+            p.rotation.y += p.userData.rotY;
 
-        // Stars drift
-        stars.rotation.y = -time * 0.01;
+            // Floating motion
+            p.position.x += Math.sin(time * 0.5 + p.position.y) * 0.02;
+            p.position.y += Math.cos(time * 0.3 + p.position.x) * 0.02;
+        });
 
-        // Camera float
-        camera.position.x += (mouseX * 5 - camera.position.x) * 0.05;
-        camera.position.y += (-mouseY * 5 - camera.position.y) * 0.05;
-        camera.lookAt(0, 10, 0); // Look at black hole
+        // Camera gentle float
+        camera.position.x += (mouseX * 2 - camera.position.x) * 0.05;
+        camera.position.y += (-mouseY * 2 - camera.position.y) * 0.05;
+        camera.lookAt(0, 0, 0);
 
         renderer.render(scene, camera);
         requestAnimationFrame(animate);
