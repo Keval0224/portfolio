@@ -4,15 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Keval P Parmar | Portfolio</title>
+    <title>Keval Parmar | Developer & DevOps Portfolio</title>
     <!-- Fonts -->
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700&display=swap"
         rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- AOS CSS -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
@@ -25,7 +23,7 @@
     <!-- Navbar -->
     <nav class="navbar">
         <div class="container nav-container">
-            <a href="#" class="logo">Keval.</a>
+            <a href="#" class="logo">KP.</a>
             <ul class="nav-menu">
                 <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#skills" class="nav-link">Skills</a></li>
@@ -44,8 +42,9 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="container hero-content">
-            <h1>Keval P Parmar</h1>
-            <h2 class="hero-subtitle">BCA Student | Web & DevOps Learner</h2>
+            <h1 class="hero-title">Keval Parmar</h1>
+            <!-- Typing Animation Span -->
+            <h2 class="hero-subtitle"><span class="typing-text"></span></h2>
             <p class="hero-tagline">“Building real-world web & deployment projects”</p>
             <div class="hero-buttons">
                 <a href="#projects" class="btn btn-primary">View Projects</a>
@@ -56,33 +55,89 @@
 
     <!-- About Section -->
     <section id="about" class="section">
-        <div class="container">
-            <h2 class="section-title text-center">About Me</h2>
-            <p class="about-text">
-                I am a passionate BCA student from <strong>ITM (SLS) Baroda University</strong> (2023–2025).
-                Recently completed an internship in the Web Department at <strong>Aarna Techno Labs</strong>.
-                My focus lies in Full Stack Web Development, CI/CD pipelines, and automated deployments.
-                I strive to build efficient, scalable, and user-friendly applications.
-            </p>
+        <div class="container text-center">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <p class="about-text">
+                    I am a passionate BCA student from <strong>ITM (SLS) Baroda University</strong> (2023–2025).
+                    I specialize in Full Stack Web Development and am actively expanding my expertise in
+                    <strong>DevOps, CI/CD pipelines, and Automation</strong>. My goal is to build scalable,
+                    efficient, and user-friendly applications while mastering modern deployment workflows.
+                </p>
+                <!-- Animated Counters -->
+                <div class="stats-container">
+                    <div class="stat-item">
+                        <h3 class="counter" data-target="10">0</h3>
+                        <p>Projects</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3 class="counter" data-target="12">0</h3>
+                        <p>Technologies</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3 class="counter" data-target="1">0</h3>
+                        <p>Internship</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Skills Section -->
+    <!-- Skills Section (Logos Only) -->
     <section id="skills" class="section">
         <div class="container text-center">
             <h2 class="section-title">Technical Skills</h2>
             <div class="skills-grid">
-                <span class="skill-badge">HTML5</span>
-                <span class="skill-badge">CSS3</span>
-                <span class="skill-badge">JavaScript</span>
-                <span class="skill-badge">Python (Basic)</span>
-                <span class="skill-badge">Django</span>
-                <span class="skill-badge">Linux</span>
-                <span class="skill-badge">Docker</span>
-                <span class="skill-badge">CI/CD</span>
-                <span class="skill-badge">Git & GitHub</span>
-                <span class="skill-badge">Nginx</span>
-                <span class="skill-badge">Web Designing</span>
+                <!-- Frontend -->
+                <div class="skill-card">
+                    <i class="fab fa-html5" style="color:#e34c26"></i>
+                    <p>HTML5</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fab fa-css3-alt" style="color:#264de4"></i>
+                    <p>CSS3</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fab fa-js" style="color:#f7df1e"></i>
+                    <p>JavaScript</p>
+                </div>
+
+                <!-- Backend/Core -->
+                <div class="skill-card">
+                    <i class="fab fa-python" style="color:#3776ab"></i>
+                    <p>Python</p>
+                </div>
+                <div class="skill-card">
+                    <!-- Using generic server icon for Django representation -->
+                    <i class="fas fa-server" style="color:#092e20"></i>
+                    <p>Django</p>
+                </div>
+
+                <!-- Tools & DevOps -->
+                <div class="skill-card">
+                    <i class="fab fa-git-alt" style="color:#f05032"></i>
+                    <p>Git</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fab fa-github" style="color:#ffffff"></i>
+                    <p>GitHub</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fab fa-docker" style="color:#2496ed"></i>
+                    <p>Docker</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fab fa-linux" style="color:#fcc624"></i>
+                    <p>Linux</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-code" style="color:#007acc"></i>
+                    <p>VS Code</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-sync-alt" style="color:#4caf50"></i>
+                    <p>CI/CD</p>
+                </div>
             </div>
         </div>
     </section>
@@ -90,11 +145,11 @@
     <!-- Projects Section -->
     <section id="projects" class="section">
         <div class="container">
-            <h2 class="section-title text-center">Projects</h2>
+            <h2 class="section-title text-center">Featured Projects</h2>
             <div class="projects-grid">
                 <!-- Project 1 -->
                 <div class="project-card">
-                    <div>
+                    <div class="project-content">
                         <h3>Smart Living E-Society</h3>
                         <p>A comprehensive web platform for modern society management, streamlining communication and
                             operations.</p>
@@ -104,11 +159,12 @@
                             <span class="tag">Database</span>
                         </div>
                     </div>
-                    <a href="#" class="btn btn-secondary" style="width:100%; text-align:center;">View Demo</a>
+                    <a href="https://smart-living-esociety.netlify.app/" target="_blank"
+                        class="btn btn-secondary project-btn">View Project</a>
                 </div>
                 <!-- Project 2 -->
                 <div class="project-card">
-                    <div>
+                    <div class="project-content">
                         <h3>AI Insights</h3>
                         <p>A detail-oriented analytical dashboard offering AI-driven insights for data interpretation.
                         </p>
@@ -118,11 +174,12 @@
                             <span class="tag">Data Viz</span>
                         </div>
                     </div>
-                    <a href="#" class="btn btn-secondary" style="width:100%; text-align:center;">View Demo</a>
+                    <a href="https://ai-insights-002.netlify.app/" target="_blank"
+                        class="btn btn-secondary project-btn">View Project</a>
                 </div>
                 <!-- Project 3 -->
                 <div class="project-card">
-                    <div>
+                    <div class="project-content">
                         <h3>Annpurna Charity Website</h3>
                         <p>A charity platform connecting donors with the needy, focusing on UI efficiency and trust.</p>
                         <div class="project-tags">
@@ -130,46 +187,34 @@
                             <span class="tag">Frontend</span>
                         </div>
                     </div>
-                    <a href="#" class="btn btn-secondary" style="width:100%; text-align:center;">View Demo</a>
-                </div>
-                <!-- Project 4 -->
-                <div class="project-card">
-                    <div>
-                        <h3>E-Commerce Clothing Website</h3>
-                        <p>A full-stack e-commerce solution handling product listing, cart management, and user
-                            profiles.</p>
-                        <div class="project-tags">
-                            <span class="tag">Full Stack</span>
-                            <span class="tag">Backend</span>
-                            <span class="tag">UI/UX</span>
-                        </div>
-                    </div>
-                    <a href="#" class="btn btn-secondary" style="width:100%; text-align:center;">View Demo</a>
+                    <a href="https://annpurna-002.netlify.app/" target="_blank"
+                        class="btn btn-secondary project-btn">View Project</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Experience & Education Section -->
+    <!-- Experience Section -->
     <section id="experience" class="section">
         <div class="container">
             <h2 class="section-title text-center">Experience & Education</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>Web Intern</h3>
+                    <p class="meta">Aarna Techno Labs | May 2025 – June 2025</p>
+                    <ul>
+                        <li>Worked on "Smart Living E-Society" project.</li>
+                        <li>Handled Frontend Development & Designing tasks.</li>
+                        <li>Utilized VS Code & AI efficiency tools for rapid development.</li>
+                        <li>Collaborated with team members for feature integration.</li>
+                    </ul>
+                </div>
 
-            <div class="timeline-item">
-                <h3>Web Intern</h3>
-                <p class="meta">Aarna Techno Labs | May 2025 – June 2025</p>
-                <ul>
-                    <li>Worked on "Smart Living E-Society" project.</li>
-                    <li>Handled Frontend Development & Designing tasks.</li>
-                    <li>Utilized VS Code & AI efficiency tools for rapid development.</li>
-                    <li>Collaborated with team members for feature integration.</li>
-                </ul>
-            </div>
-
-            <div class="timeline-item">
-                <h3>Bachelor of Computer Applications (BCA)</h3>
-                <p class="meta">ITM (SLS) Baroda University | 2023 – 2025</p>
-                <p>Focusing on Core Computer Science subjects, Web Technologies, and Software Engineering.</p>
+                <div class="timeline-item">
+                    <h3>Bachelor of Computer Applications (BCA)</h3>
+                    <p class="meta">ITM (SLS) Baroda University | 2023 – 2025</p>
+                    <p>Focusing on Core Computer Science subjects, Web Technologies, and Software Engineering.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -181,16 +226,22 @@
             <div class="contact-wrapper">
                 <div class="contact-info">
                     <h3>Get In Touch</h3>
-                    <p style="color:var(--text-secondary); margin-bottom:20px;">
+                    <p class="contact-subtext">
                         I am available for freelance work and internship opportunities.
                     </p>
-                    <p><i class="fas fa-envelope"></i> &nbsp; keval@example.com</p>
-                    <p><i class="fas fa-phone"></i> &nbsp; +91 98765 43210</p>
+                    <div class="contact-details">
+                        <a href="mailto:parmarkeval204@gmail.com" class="contact-link">
+                            <i class="fas fa-envelope"></i> parmarkeval204@gmail.com
+                        </a>
+                        <a href="tel:+919558105502" class="contact-link">
+                            <i class="fas fa-phone"></i> +91 9558105502
+                        </a>
+                    </div>
 
-                    <div class="contact-icons">
-                        <a href="#"><i class="fab fa-github"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    <div class="contact-socials">
+                        <a href="https://github.com/Keval0224" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/parmar-keval-597a70253" target="_blank"><i
+                                class="fab fa-linkedin"></i></a>
                     </div>
                 </div>
 
@@ -213,7 +264,7 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2025 Keval P Parmar. All Rights Reserved.</p>
+            <p>&copy; 2025 Keval Parmar. All Rights Reserved.</p>
         </div>
     </footer>
 
@@ -224,6 +275,9 @@
     <!-- GSAP & ScrollTrigger -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- Typed.js -->
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
 
     <script src="script.js"></script>
 </body>
