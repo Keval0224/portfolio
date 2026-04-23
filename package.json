@@ -4,7 +4,7 @@
   "description": "A modern, animated, dark-theme personal portfolio website built with HTML, CSS, JavaScript, and Node.js.",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"No tests specified yet\" && exit 0",
     "start": "node server.js",
     "build": "echo 'No build step required'"
   },
