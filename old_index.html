@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -13,122 +13,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
-
-    <style>
-        /* =========================================
-           WELCOME LOADER
-           ========================================= */
-        #welcome-loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: var(--bg-color, #050510);
-            z-index: 9999;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            transition: transform 0.7s cubic-bezier(0.77, 0, 0.175, 1);
-        }
-
-        .wl-logo {
-            font-family: var(--font-heading, 'Outfit', sans-serif);
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--text-primary, #ffffff);
-            opacity: 0;
-            transform: scale(0.8);
-            animation: wlLogoIn 0.7s forwards ease-out;
-        }
-
-        .wl-text-container {
-            text-align: center;
-            min-height: 80px;
-            margin-top: 20px;
-        }
-
-        .wl-name {
-            font-family: var(--font-heading, 'Outfit', sans-serif);
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--text-primary, #ffffff);
-        }
-
-        .wl-role {
-            font-family: var(--font-body, 'Inter', sans-serif);
-            font-size: 1.2rem;
-            color: var(--text-secondary, #cbd5e1);
-            margin-top: 5px;
-        }
-
-        .wl-progress-container {
-            width: 250px;
-            height: 2px;
-            background: rgba(255, 255, 255, 0.1);
-            margin-top: 30px;
-            border-radius: 2px;
-            overflow: hidden;
-            opacity: 0;
-            animation: wlFadeIn 0.5s 1.8s forwards;
-        }
-
-        .wl-progress-bar {
-            width: 0%;
-            height: 100%;
-            background: var(--accent-color, #38bdf8);
-            animation: wlProgressFill 1s 1.8s forwards ease-in-out;
-        }
-
-        .wl-welcome-msg {
-            font-family: var(--font-heading, 'Outfit', sans-serif);
-            font-size: 1.5rem;
-            color: var(--text-primary, #ffffff);
-            margin-top: 20px;
-            opacity: 0;
-            animation: wlFadeIn 0.5s 2.0s forwards;
-        }
-
-        @keyframes wlLogoIn {
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        @keyframes wlFadeIn {
-            to { opacity: 1; }
-        }
-
-        @keyframes wlProgressFill {
-            to { width: 100%; }
-        }
-
-        body.loading {
-            overflow: hidden;
-        }
-        body.loading > *:not(#welcome-loader):not(script) {
-            opacity: 0 !important;
-        }
-        body.loaded > *:not(#welcome-loader):not(script) {
-            opacity: 1;
-            transition: opacity 0.8s ease-in;
-        }
-    </style>
 </head>
 
 <body>
-
-    <!-- Welcome Loader -->
-    <div id="welcome-loader">
-        <div class="wl-logo">KP.</div>
-        <div class="wl-text-container">
-            <div class="wl-name" id="wl-name"></div>
-            <div class="wl-role" id="wl-role"></div>
-        </div>
-        <div class="wl-progress-container">
-            <div class="wl-progress-bar"></div>
-        </div>
-        <div class="wl-welcome-msg">Welcome to my Portfolio</div>
-    </div>
 
     <!-- Background Animation Container -->
     <div id="particles-js"></div>
@@ -159,7 +46,7 @@
             <h1 class="hero-title">Keval Parmar</h1>
             <!-- Typing Animation Span -->
             <h2 class="hero-subtitle"><span class="typing-text"></span></h2>
-            <p class="hero-tagline">“Building real-world web & deployment projects”</p>
+            <p class="hero-tagline">ΓÇ£Building real-world web & deployment projectsΓÇ¥</p>
             <div class="hero-buttons">
                 <a href="#projects" class="btn btn-primary">View Projects</a>
                 <a href="#contact" class="btn btn-secondary">Contact Me</a>
@@ -173,7 +60,7 @@
             <h2 class="section-title">About Me</h2>
             <div class="about-content">
                 <p class="about-text">
-                    I am a passionate BCA student from <strong>ITM (SLS) Baroda University</strong> (2023–2025).
+                    I am a passionate BCA student from <strong>ITM (SLS) Baroda University</strong> (2023ΓÇô2025).
                     I specialize in Full Stack Web Development and am actively expanding my expertise in
                     <strong>DevOps, CI/CD pipelines, and Automation</strong>. My goal is to build scalable,
                     efficient, and user-friendly applications while mastering modern deployment workflows.
@@ -346,7 +233,7 @@
             <div class="timeline">
                 <div class="timeline-item">
                     <h3>Web Intern</h3>
-                    <p class="meta">Aarna Techno Labs | May 2024 – June 2024</p>
+                    <p class="meta">Aarna Techno Labs | May 2024 ΓÇô June 2024</p>
                     <ul>
                         <li>Worked on "Smart Living E-Society" project.</li>
                         <li>Handled Frontend Development & Designing tasks.</li>
@@ -357,7 +244,7 @@
 
                 <div class="timeline-item">
                     <h3>Bachelor of Computer Applications (BCA)</h3>
-                    <p class="meta">ITM (SLS) Baroda University | 2023 – 2025</p>
+                    <p class="meta">ITM (SLS) Baroda University | 2023 ΓÇô 2025</p>
                     <p>Focusing on Core Computer Science subjects, Web Technologies, and Software Engineering.</p>
                 </div>
             </div>
@@ -409,58 +296,11 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2026 Keval Parmar. All Rights Reserved.</p>
+            <p>&copy; 2025 Keval Parmar. All Rights Reserved.</p>
         </div>
     </footer>
 
     <!-- Scripts -->
-    
-    <!-- Loader Logic -->
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            document.body.classList.add("loading");
-            
-            const nameEl = document.getElementById("wl-name");
-            const roleEl = document.getElementById("wl-role");
-            const loader = document.getElementById("welcome-loader");
-            
-            // Step 2: Typewriter (Starts at 0.7s)
-            setTimeout(() => {
-                const text1 = "Keval Parmar";
-                const text2 = "Developer & DevOps Engineer";
-                let i = 0, j = 0;
-                
-                function typeName() {
-                    if(i < text1.length) {
-                        nameEl.innerHTML += text1.charAt(i); i++;
-                        setTimeout(typeName, 40);
-                    } else {
-                        setTimeout(typeRole, 100);
-                    }
-                }
-                function typeRole() {
-                    if(j < text2.length) {
-                        roleEl.innerHTML += text2.charAt(j); j++;
-                        setTimeout(typeRole, 30);
-                    }
-                }
-                typeName();
-            }, 700);
-
-            // Step 4: Slide up and reveal (Starts at 2.8s)
-            setTimeout(() => {
-                loader.style.transform = "translateY(-100%)";
-                document.body.classList.remove("loading");
-                document.body.classList.add("loaded");
-                
-                // Remove from DOM
-                setTimeout(() => {
-                    loader.remove();
-                }, 800);
-            }, 2800);
-        });
-    </script>
-
     <!-- Particles.js -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
