@@ -82,23 +82,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Stats Counters
-    const counters = document.querySelectorAll('.counter');
-    counters.forEach(counter => {
-        const target = +counter.getAttribute('data-target');
-        let countObj = { val: 0 };
-        gsap.to(countObj, {
-            val: target,
-            duration: 2,
-            ease: "power2.out",
-            scrollTrigger: {
-                trigger: ".stats-container",
-                start: "top 85%",
-                toggleActions: "play none none none"
-            },
-            onUpdate: function () {
-                counter.innerText = Math.round(countObj.val) + "+";
-            }
-        });
+    ScrollTrigger.create({
+        trigger: ".stats-container",
+        start: "top 85%",
+        once: true,
+        onEnter: () => {
+            const counters = document.querySelectorAll('.counter');
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                let countObj = { val: 0 };
+                gsap.to(countObj, {
+                    val: target,
+                    duration: 2,
+                    ease: "power2.out",
+                    onUpdate: function () {
+                        counter.innerText = Math.floor(countObj.val) + "+";
+                    }
+                });
+            });
+        }
     });
 
     // Skill Cards (Staggered Fade In)
